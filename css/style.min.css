@@ -11990,7 +11990,6 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
     gap: 20px;
     overflow: hidden
 }
