@@ -207,155 +207,220 @@
 
 </div>
 </div>
-</section> <section id="co" class="contact">
-<div class="information__title">
-<p style="opacity: 1 !important; transform: translate(0);">Контакти</p>
-<div class="line"></div>
-</div>
-<div class="contact__content">
-<a class="_anim-items" id="telegram" target="_blank" href="https://t.me/JustWebDeveloper">
-<img src="icons/telegram.png" alt="telegram">
-</a>
-<p class="_anim-items">ivanwork05@gmail.com</p> 
-<a class="_anim-items" id="gmail" target="_blank" href="https://ikutereba950@gmail.com">
-<img src="icons/gmail.png" alt="gmail">
-</a>
+</section>
+     <a href="https://www.instagram.com/justweb__?igsh=cjhteThnMXBoN3ds" class=" btn-up-instagram "></a>
+    </div>
+    </div>
+    </div>
+    <a href="https://t.me/JustWebDeveloper" class=" btn-up-telegram"></a>
+    </div>
+    </div>
+    </div>
+    <div class="btn-up btn-up_hide"></div>
+    </div>
+    </div>
+    </div>
+ <style>
+        body {
+            background: rgb(0, 0, 0);
+            color: white;
+
+        }
 
 
-</div>
-</section><div class="btn-up btn-up_hide"></div></div></div></div><style>body{
-background:rgb(0, 0, 0);
-color: white;
+        /* анімація */
+        ._active {
+            transform: translateY(0) !important;
+            transition: 1s !important;
+            opacity: 1 !important;
 
+        }
+
+        .bar {
+            position: absolute !important;
+            right: 30px;
+            top: 47px !important;
+        }
+
+        .menu-expanded .bar {
+            right: 30px;
+            top: 25px;
+        }
+
+        .logo img {
+            max-width: 250px !important;
+            width: 100% !important;
+            height: 100px !important;
+        }
+
+
+
+
+        /* кнопка вверх -------------------- */
+
+        .btn-up {
+            position: fixed;
+            background-color: #4d4d4d !important;
+             border: 1px solid grey;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 22px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+        }
+
+        .btn-up::before {
+            content: "";
+            text-align: center;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 12px;
+            top: 12px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 17V4M3 10l7-7 7 7'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .btn-up_hide {
+            display: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .btn-up:hover {
+                background-color: #989898;
+            }
+        }</style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+    const btnUp = {
+            el: document.querySelector('.btn-up'),
+            show() {
+                // удалим у кнопки класс btn-up_hide
+                this.el.classList.remove('btn-up_hide');
+            },
+            hide() {
+                // добавим к кнопке класс btn-up_hide
+                this.el.classList.add('btn-up_hide');
+            },
+            addEventListener() {
+                // при прокрутке содержимого страницы
+                window.addEventListener('scroll', () => {
+                    // определяем величину прокрутки
+                    const scrollY = window.scrollY || document.documentElement.scrollTop;
+                    // если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
+                    scrollY > 400 ? this.show() : this.hide();
+                });
+                // при нажатии на кнопку .btn-up
+                document.querySelector('.btn-up').onclick = () => {
+                    // переместим в начало страницы
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        btnUp.addEventListener();
+
+
+
+        const animItems = document.querySelectorAll('._anim-items');
+
+        if (animItems.length > 0) {
+            window.addEventListener('scroll', animOnScroll);
+            function animOnScroll() {
+                for (let index = 0; index < animItems.length; index++) {
+                    const animItem = animItems[index];
+                    const animItemHeight = animItem.offsetHeight;
+                    const animItemOffset = offset(animItem).top;
+                    const animStart = 4;
+
+                    let animItemPoint = window.innerHeight - animItemHeight / animStart;
+                    if (animItemHeight > window.innerHeight) {
+                        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                    }
+
+                    if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+                        animItem.classList.add('_active');
+                    } else {
+                        if (!animItem.classList.contains('_anim-no-hide')) {
+                            animItem.classList.remove('_active');
+                        }
+                    }
+                }
+            }
+            function offset(el) {
+                const rect = el.getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+            }
+
+            setTimeout(() => {
+                animOnScroll();
+            }, 300);
+        }
+
+        $(".menu-collapsed").click(function () {
+            $(".header").toggleClass("header-fixed");
+        });
+
+        // burger
+        $(".menu-collapsed").click(function () {
+            $(this).toggleClass("menu-expanded");
+        });
+
+    
+        setTimeout(function() {
+    document.querySelector('.btn-up-instagram').style.display = 'block';
+}, 2000);
+setTimeout(function() {
+    document.querySelector('.btn-up-telegram').style.display = 'block';
+}, 2000);
+
+// Отримати посилання на елемент
+var element = document.querySelector('.btn-up-instagram');
+
+// Функція, яка збільшує елемент
+function increaseSize() {
+    element.style.transition = 'transform 1.5s'; // Задати тривалість переходу
+    element.style.transform = 'scale(1.5)'; // Збільшити масштаб елемента
 }
 
-  .logo img{
-    max-width: 250px !important;
-    width: 100%;
-    height: 100px !important;
-}
-/* анімація */
-._active{
-transform: translateY(0) !important;
-transition: 1s !important;
-opacity: 1 !important;
-
-}
-.bar{
-position: absolute !important;
-right: 30px;
-top: 46px;
-}
-.menu-expanded .bar {
-right: 30px;
-top: 25px;
+// Функція, яка зменшує елемент
+function decreaseSize() {
+    element.style.transition = 'transform 1.5s'; // Задати тривалість переходу
+    element.style.transform = 'scale(1)'; // Зменшити масштаб елемента
 }
 
+// Збільшення елемента кожні 10 секунд
+setInterval(function() {
+    increaseSize(); // Викликати функцію збільшення
+    setTimeout(decreaseSize, 900); // Зменшити елемент через 5 секунд
+}, 8000); // Повторити цикл кожні 10 секунд
 
+var elementt = document.querySelector('.btn-up-telegram');
 
-
-/* кнопка вверх -------------------- */
-
-.btn-up {
-position: fixed;
-background-color: #4d4d4d;
-right: 20px;
-bottom: 20px;
-border-radius: 22px;
-cursor: pointer;
-width: 44px;
-height: 44px;
+// Функція, яка збільшує елемент
+function increaseSizee() {
+    elementt.style.transition = 'transform 1.5s'; // Задати тривалість переходу
+    elementt.style.transform = 'scale(1.5)'; // Збільшити масштаб елемента
 }
 
-.btn-up::before {
-content: "";
-text-align: center;
-position: absolute;
-width: 20px;
-height: 20px;
-left: 12px;
-top: 12px;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 17V4M3 10l7-7 7 7'/%3E%3C/g%3E%3C/svg%3E");
+// Функція, яка зменшує елемент
+function decreaseSizee() {
+    elementt.style.transition = 'transform 1.5s'; // Задати тривалість переходу
+    elementt.style.transform = 'scale(1)'; // Зменшити масштаб елемента
 }
 
-.btn-up_hide {
-display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-.btn-up:hover {
-background-color: #989898;
-}
-}</style><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script src="js/script.js"></script><script src="js/lazyload.min.js"></script><script>let lazyLoadInstance = new LazyLoad({
-elements_selector: ".lazy"
-});
-const btnUp = {
-el: document.querySelector('.btn-up'),
-show() {
-// удалим у кнопки класс btn-up_hide
-this.el.classList.remove('btn-up_hide');
-},
-hide() {
-// добавим к кнопке класс btn-up_hide
-this.el.classList.add('btn-up_hide');
-},
-addEventListener() {
-// при прокрутке содержимого страницы
-window.addEventListener('scroll', () => {
-// определяем величину прокрутки
-const scrollY = window.scrollY || document.documentElement.scrollTop;
-// если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
-scrollY > 400 ? this.show() : this.hide();
-});
-// при нажатии на кнопку .btn-up
-document.querySelector('.btn-up').onclick = () => {
-// переместим в начало страницы
-window.scrollTo({
-top: 0,
-left: 0,
-behavior: 'smooth'
-});
-}
-}
-}
-
-btnUp.addEventListener();
-
-
-
-const animItems = document.querySelectorAll('._anim-items');
-
-if (animItems.length > 0) {
-window.addEventListener('scroll', animOnScroll);
-function animOnScroll() {
-for (let index = 0; index < animItems.length; index++) {
-const animItem = animItems[index];
-const animItemHeight = animItem.offsetHeight;
-const animItemOffset = offset(animItem).top;
-const animStart = 4;
-
-let animItemPoint = window.innerHeight - animItemHeight / animStart;
-if (animItemHeight > window.innerHeight) {
-    animItemPoint = window.innerHeight - window.innerHeight / animStart;
-}
-
-if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-    animItem.classList.add('_active');
-} else {
-    if (!animItem.classList.contains('_anim-no-hide')) {
-        animItem.classList.remove('_active');
-    }
-}
-}
-}
-function offset(el) {
-const rect = el.getBoundingClientRect(),
-scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-}
-
-setTimeout(() => {
-animOnScroll();
-}, 300);
-}</script></body></html>
+// Збільшення елемента кожні 10 секунд
+setInterval(function() {
+    increaseSizee(); // Викликати функцію збільшення
+    setTimeout(decreaseSizee, 900); // Зменшити елемент через 5 секунд
+}, 8000); // Повторити цикл кожні 10 секунд
+    </script></body></html>
