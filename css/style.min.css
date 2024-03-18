@@ -12477,8 +12477,8 @@ select {
 }
 @media screen and (max-width:500px) {
     .about-me {
-        padding-top: 800px
-            padding-bottom: 50px;
+        padding-top: 800px !important;
+            padding-bottom: 50px !important;
     }
 }
 .about-me__information {
