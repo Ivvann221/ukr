@@ -12475,7 +12475,12 @@ select {
         padding-top: 130px
     }
 }
-
+@media screen and (max-width:500px) {
+    .about-me {
+        padding-top: 800px
+            padding-bottom: 50px;
+    }
+}
 .about-me__information {
     background-color: rgba(142, 138, 135, .299);
     height: 400px;
@@ -12531,14 +12536,14 @@ select {
 
 @media screen and (max-width:497px) {
     .information .description p {
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.9
     }
 }
 
 @media screen and (max-width:400px) {
     .information .description p {
-        font-size: 13px
+        font-size: 12px
     }
 }
 
