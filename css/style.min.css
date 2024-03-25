@@ -12526,6 +12526,11 @@ select {
         padding: 0 30px
     }
 }
+@media screen and (max-width:400px) {
+    .information .description {
+        padding: 0 10px 
+    }
+}
 
 .information .description p {
     opacity: 0;
