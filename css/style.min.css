@@ -12475,6 +12475,11 @@ select {
         padding-top: 130px
     }
 }
+@media screen and (max-width:500px) {
+    .about-me {
+        padding-top: 0px
+    }
+}
 
 .about-me__information {
     background-color: rgba(142, 138, 135, .299);
